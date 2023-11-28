@@ -1,1 +1,129 @@
 # Linux Command 
+
+# 実行環境
+OS : Windows11, WSL2 
+
+
+# ファイルを一覧表示する
+ls コマンド
+
+lsコマンドは「list segments」　　
+ディレクトリやファイルを表示するためのコマンドです。　　
+
+### 作業ディレクトリのファイルやフォルダを表示する
+
+```
+$ ls
+folder1  folder2  folder3
+$
+
+```
+
+
+### 作業ディレクトリのファイルやフォルダを1列で表示する
+
+ls -1  
+
+```
+$ ls -1       
+folder1
+folder2
+folder3
+$
+```
+
+### 作業ディレクトリのファイルやフォルダを再帰的にリストアップする
+
+ls -R  
+
+```
+$ ls -R
+.:
+folder1  folder2  folder3
+
+./folder1:
+file1.txt  file2.txt  file3.txt
+
+./folder2:
+file1.txt  file2.txt  file3.txt
+
+./folder3:
+file1.txt  file2.txt  file3.txt
+$
+```
+
+### 作業ディレクトリのファイルやフォルダをロングフォーマットでリストアップする
+
+ls -l  
+  
+下記を表示  
+コンテンツのパーミッション  
+ハードリンク数  
+所有者  
+所有グループ  
+バイトで表したサイズ  
+コンテンツの最終変更日／時間  
+ファイルまたはディレクトリの名前  
+
+```
+$ ls -l
+total 0
+drwxrwxrwx 1 taso taso 512 Nov 28 23:23 folder1
+drwxrwxrwx 1 taso taso 512 Nov 28 23:23 folder2
+drwxrwxrwx 1 taso taso 512 Nov 28 23:23 folder3
+$
+```
+
+### 作業ディレクトリのファイルやフォルダをリストアップし日付と時間でソートして表示
+
+ls -t   
+  
+folder1, folder2, folder3 の順番に作成したので、  
+時間でソートされている  
+
+```
+$ ls -t       
+folder3  folder2  folder1
+```
+
+### 作業ディレクトリのファイルやフォルダをリストアップしファイルサイズでソートして表示
+
+ls -S
+
+```
+$ ls -S
+folder1  folder2  folder3
+```
+
+
+### 特定のディレクトリの中身を表示
+
+ls <folder>
+
+```
+$ ls folder1  
+file1.txt  file2.txt  file3.txt
+$
+```
+
+
+### lsの主なオプション
+
+```
+オプション	説明
+-a	先頭にピリオドがあるファイル（隠しファイル）を表示する
+-l	一覧化して詳細を表示する
+-h	読みやすい形式で表示する
+-1	縦に並べて表示する
+-t	更新日付順に表示する
+-X	ファイルの拡張子別に表示する
+-p	ディレクトリは「/」をつけて表示する
+-m	ファイルを,（カンマ）で区切って表示する
+```
+
+
+### 参考サイト ls コマンド
+Linux の LS コマンドについて – ディレクトリの中のファイルをリストアップする方法 + オプションフラグ  
+https://www.freecodecamp.org/japanese/news/the-linux-ls-command-how-to-list-files-in-a-directory-with-options/  
+
+
