@@ -4,6 +4,68 @@
 OS : Windows11, WSL2 
 
 
+# シンボリックリンクとハードリンクの作成方法
+
+### シンボリックリンクとは  
+Windows だとショートカットのことです。  
+本体であるファイルやディレクトリが位置する場所とは別に、その本体に対する別名のリンクを別の場所に作成するためにシンボリックリンクを使います。  
+コピーを作成するのではない。    
+例えばある場所に配置されたファイルを、あたかも別の場所に存在するかのように扱うことができます。
+
+
+### ハードリンクの作成
+ln <file> <hard_link>
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test/folder1$ ls
+file1.txt  file2.txt  file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test/folder1$ ln file1.txt  f
+ile1_txt_hard_link
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test/folder1$ ls
+file1.txt  file1_txt_hard_link  file2.txt  file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test/folder1$ ls -l
+total 0
+-rwxrwxrwx 2 taso taso 3 Nov 29 23:45 file1.txt
+-rwxrwxrwx 2 taso taso 3 Nov 29 23:45 file1_txt_hard_link
+-rwxrwxrwx 1 taso taso 0 Nov 28 23:23 file2.txt
+-rwxrwxrwx 1 taso taso 0 Nov 28 23:23 file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test/folder1$
+```
+
+
+### ハードリングとは  
+Linux(Unix) だとすべてのファイルは、inode と呼ばれるファイルシステム上で一意のデータを参照します。
+ディスク上の実体のデータに対して一意な inode が存在し、それをファイル名でリンクされているイメージです。  
+inode に対して必ず1つ以上の ハードリンク が存在します。  
+つまり作成されたファイルやディレクトリは1つの inode とハードリンクでつながります。  
+ハードリンクを別途作成する場合、1つの inode に対して複数のハードリンクで参照するファイルやディレクトリが存在するようになります。  
+
+一つのファイルに対し，複数の実名を付ける処理がハードリンクである。ハードリンクの場合，複数あるファイル名はどれも対等なものとなる。  
+
+
+### シンボリックリンクの作成
+ln -s <file> <symbolic_link>
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test/folder1$ ln -s file1.txt file1_txt_symbolic_link
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test/folder1$ ls
+file1.txt  file1_txt_symbolic_link  file2.txt  file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test/folder1$ ls -li
+total 0
+ 8725724278589409 -rwxrwxrwx 1 taso taso 0 Nov 28 23:23 file1.txt
+15481123719280442 lrwxrwxrwx 1 taso taso 9 Nov 29 23:43 file1_txt_symbolic_link -> file1.txt        
+ 1970324837533668 -rwxrwxrwx 1 taso taso 0 Nov 28 23:23 file2.txt
+ 1407374884112357 -rwxrwxrwx 1 taso taso 0 Nov 28 23:23 file3.txt
+```
+
+
+### 参考サイト
+[Linux] ln シンボリックリンクとハードリンクの違いと作り方  
+https://webbibouroku.com/Blog/Article/linux-ln  
+シンボリックリンクとハードリンクの違い  
+https://qiita.com/katsuo5/items/fc57eaa9330d318ee342
+
+
 # 素因数分解する
 factor <number>  
 
