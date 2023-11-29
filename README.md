@@ -4,6 +4,20 @@
 OS : Windows11, WSL2 
 
 
+# 素因数分解する
+factor <number>  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command$ factor 123
+123: 3 41
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command$ factor 123123412
+123123412: 2 2 30780853
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command$ factor 30780853
+30780853: 30780853
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command$
+```
+
+
 # ディレクトリを移動する
 cd コマンド  
 
