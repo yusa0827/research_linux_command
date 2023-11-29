@@ -4,6 +4,74 @@
 OS : Windows11, WSL2 
 
 
+# ディレクトリを移動する
+cd コマンド  
+
+cdコマンドの「cd」は、「change directory」の略です。  
+
+
+### 指定したディレクトリに移動
+cd <folder>
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cd folder1
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test/folder1$ 
+
+```
+
+### １つ上の階層のディレクトリに移動
+cd ..
+
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test/folder1$ cd ..
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ 
+```
+
+
+### ホームディレクトリ以下に移動
+cd と cd ~ は同じ結果  
+
+cd  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cd 
+taso@LAPTOP-4VD8MIEJ:~$
+```
+
+cd ~  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cd ~
+taso@LAPTOP-4VD8MIEJ:~$ 
+```
+
+
+### 1つ前にいたディレクトリに移動する
+cd -
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cd folder1  
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test/folder1$ cd -
+/mnt/c/Users/sasak/Desktop/research_linux_command/test
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+### シンボリックへの移動
+cd [オプション] [ディレクトリ]  
+  
+-P	シンボリックリンクの場合、シンボリックリンクのターゲットに移動します。  
+-L	シンボリックリンクの場合、シンボリックリンクに移動します。  
+
+
+
+### 参考サイト 
+【cd】Linuxでディレクトリを移動するコマンド
+https://uxmilk.jp/27431
+
+Linuxコマンド【 cd 】作業ディレクトリを移動する  
+https://webkaru.net/linux/cd-command/  
+
 # ファイルを一覧表示する
 ls コマンド
 
