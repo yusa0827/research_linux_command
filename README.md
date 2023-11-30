@@ -4,6 +4,80 @@
 OS : Windows11, WSL2 
 
 
+# 【find】ディレクトリやファイルを見つける
+
+
+find コマンドは、検索するためのコマンドです。　　
+ファイルやディレクトリを検索する際に用います。　　
+
+
+### ディレクトリのみを対象に検索する
+
+find -type d  
+ディレクトリを対象に検索  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find -type d
+.
+./folder1
+./folder2
+./folder3
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ 
+```
+
+### ファイルのみを対象に検索する
+
+find -type f  
+ファイルのみを対象に検索  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find -type f
+./folder1/file1.txt
+./folder1/file2.txt
+./folder1/file3.txt
+./folder2/file1.txt
+./folder2/file2.txt
+./folder2/file3.txt
+./folder3/file1.txt
+./folder3/file2.txt
+./folder3/file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+### 特定の文文字列のみを対象に検索する
+
+find  -name [file]
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find  -name file1.txt
+./folder1/file1.txt
+./folder2/file1.txt
+./folder3/file1.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ 
+```
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find -type d -name folder1
+./folder1
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ 
+```
+
+### 複数条件(-and, -or, -not) で 条件に当てはまるファイルやディレクトリを検索する
+
+
+```
+
+```
+
+
+### 参考サイト
+find コマンド 【使い方 まとめ】  
+https://tech-blog.rakus.co.jp/entry/20220831/find  
+ファイルなどを検索する！findコマンドの詳細まとめ【Linuxコマンド集】  
+https://eng-entrance.com/linux-command-find  
+
+
 # シンボリックリンクとハードリンクの作成方法
 
 ### シンボリックリンクとは  
