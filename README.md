@@ -4,6 +4,143 @@
 OS : Windows11, WSL2 
 
 
+# 【mv】ファイルやディレクトリを移動またはリネームする
+
+
+「mv」は、下記の①と②ができる。  
+①ファイルやディレクトリを移動
+②リネームしたりするコマンドです。
+
+### ファイルを移動する
+mv [src] [dst]
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+folder1  folder2  folder3
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ mv folder1/file1.txt file1.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  folder1  folder2  folder3
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+### ファイルをリネームする
+mv [file_a] [file_b] 
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  folder1  folder2  folder3
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ mv file1.txt file2.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file2.txt  folder1  folder2  folder3
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+### 複数のファイルを1つのディレクトリに移動する
+mv [file_a] [file_b] [file_c] [folder] 
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ mv file1.txt file2.txt file3.txt folder4
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls folder4/
+file1.txt  file2.txt  file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+### 移動した先に同名ファイルがあれば上書きする
+mv -f file1.txt folder1/file1.txt  
+-f, --force
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt
+test1
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt
+test1
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat folder1/file1.txt 
+test
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ mv -f file1.txt folder1/file1.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.tx
+cat: file1.tx: No such file or directory
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt
+cat: file1.txt: No such file or directory
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat folder1/file1.txt
+test1
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ 
+```
+
+
+
+### 移動した先に同名ファイルがあれば上書きするかを確認する
+mv -i file1.txt file2.txt　　
+-i, --interactive  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ mv -i file1.txt file2.txt
+mv: overwrite 'file2.txt'? y
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file2.txt  file3.txt  folder1  folder2  folder3  folder4
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+
+### 移動した先に同名ファイルがあれば上書きしない、移動もしない
+
+mv -n file1.txt folder1/file1.txt  
+-n, --no-clobber
+
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ echo test2 > folder1/file1.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt
+test1
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat folder1/file1.txt
+test2
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ mv -n file1.txt folder1/file1.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat folder1/file1.txt
+test2
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ 
+```
+
+
+
+### 上書きされるファイルをバックアップする
+mv -b file1.txt file1.txt  
+-b, --backup  
+
+バックアップされたファイル名は、最後に"~" が付く  
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt
+test1
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file2.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ mv -b file1.txt file1.txt
+mv: 'file1.txt' and 'file1.txt' are the same file
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ mv -b file1.txt file2.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file2.txt  file2.txt~  file3.txt  folder1  folder2  folder3  folder4
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file2.txt
+test1
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file2.txt~
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ 
+```
+
+
+### 参考サイト 
+【 mv 】コマンド――ファイルやディレクトリを移動する／名前を変更する  
+https://atmarkit.itmedia.co.jp/ait/articles/1606/13/news024.html  
+【Linuxコマンド】mvでファイル・ディレクトリを移動する方法
+https://www.sejuku.net/blog/49611
+
+
 # 【find】ディレクトリやファイルを見つける
 
 
