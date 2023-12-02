@@ -10,12 +10,148 @@ OS : Windows11, WSL2
 
 
 # 目次
-1. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
-1. #### [【find】ディレクトリやファイルを見つける](#find)
-1. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
-1. #### [【factor】素因数分解する](#factor)
-1. #### [【cd】ディレクトリを移動する](#cd)
-1. #### [【ls】ファイルを一覧表示する](#ls)
+1. #### [【xargs】コマンドラインを作成して実行する](#xargs)
+2. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
+3. #### [【find】ディレクトリやファイルを見つける](#find)
+4. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
+5. #### [【factor】素因数分解する](#factor)
+6. #### [【cd】ディレクトリを移動する](#cd)
+7. #### [【ls】ファイルを一覧表示する](#ls)
+
+
+
+
+<a id="xargs"></a>
+
+# 【xargs】コマンドラインを作成して実行する
+使いこなせたら、かっこいい
+
+### 特定のファイル・フォルダを見つけて、削除する
+
+find file* | xargs rm -v  
+rm, -v, --verbose         explain what is being done  
+
+fileがつくファイル・フォルダを見つけて、  
+それらを削除する  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find "file*"
+find: ‘file*’: No such file or directory
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find file* 
+file1.txt
+file2.txt
+file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find file* | xargs rm -v
+removed 'file1.txt'
+removed 'file2.txt'
+removed 'file3.txt'
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+folder1  folder2  folder3  folder4
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+### 特定のファイル・フォルダを見つけて、削除することをドライランする
+file file* | xargs -p rm -v  
+-p, --interactive            prompt before running commands  
+
+ドライラン：予行演習、空運転、リハーサルなどの意味  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ file file*
+file1.txt: empty
+file2.txt: empty
+file3.txt: empty
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ file file* | xargs -p rm -v
+rm -v file1.txt: empty file2.txt: empty file3.txt: empty ?...
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+### 特定のファイル・フォルダを見つけて、コピーする
+
+find file* | xargs -i cp {} tmp/　　
+-i, --replace[=R]            replace R in INITIAL-ARGS with names read　　
+                                 from standard input; if R is unspecified,　　
+                                 assume {}　　
+オプション -i は、 {} で　引数の位置を指定する
+
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4  tmp
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls tmp/
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find file*
+file1.txt
+file2.txt
+file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find file* | xargs -p -i cp {} tmp/
+cp file1.txt tmp/ ?...
+cp file2.txt tmp/ ?...
+cp file3.txt tmp/ ?...
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find file* | xargs-i cp {} tmp/
+xargs-i: command not found
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find file* | xargs -i cp {} tmp/
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls tmp/
+file1.txt  file2.txt  file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+### 特定のファイル・フォルダを見つけて、複数プロセスで同時にコピーする
+find file* | xargs -i -P 4 cp {}   
+  -P, --max-procs=MAX-PROCS    run at most MAX-PROCS processes at a time  
+オプション -P で複数のプロセスを同時に立ち上げて実行  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4  tmp
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls tmp/
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4  tmp
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find file* | xargs -p -i -P 4 cp {} tmp/        
+cp file1.txt tmp/ ?...
+cp file2.txt tmp/ ?...
+cp file3.txt tmp/ ?...
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls tmp/
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ find file* | xargs -i -P 4 cp {} tmp/
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls tmp/
+file1.txt  file2.txt  file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+### テキストに書かれたファイル名をテキストファイルとして作成する
+cat file1.txt | xargs touch　　
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ echo  test_file.txt > file1.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt
+test_file.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt | xargs touch
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4  tmp
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4  test_file.txt  tmp
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder2  folder3  folder4  test_file.txt  tmp
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+### 参考サイト
+xargs コマンドとは  
+https://tech-lab.sios.jp/archives/29544  
+【Linux】xargsコマンドの使い方　　
+https://qiita.com/P-man_Brown/items/c3f2634b7b5e08306c8f  
+xargsコマンドで覚えておきたい使い方・組み合わせ7個(+1個)　　
+https://orebibou.com/ja/home/201507/20150727_001/  
+【必読】便利なxargsコマンドの使い方を実例付きで丁寧に解説
+https://itc.tokyo/linux/xargs-command/
+
 
 <a id="mv"></a>
 
