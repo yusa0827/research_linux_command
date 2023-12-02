@@ -10,15 +10,50 @@ OS : Windows11, WSL2
 
 
 # 目次
-1. #### [【xargs】コマンドラインを作成して実行する](#xargs)
-2. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
-3. #### [【find】ディレクトリやファイルを見つける](#find)
-4. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
-5. #### [【factor】素因数分解する](#factor)
-6. #### [【cd】ディレクトリを移動する](#cd)
-7. #### [【ls】ファイルを一覧表示する](#ls)
+1. #### [【tar】tar.gz の圧縮と解凍](#tar)
+2. #### [【xargs】コマンドラインを作成して実行する](#xargs)
+3. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
+4. #### [【find】ディレクトリやファイルを見つける](#find)
+5. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
+6. #### [【factor】素因数分解する](#factor)
+7. #### [【cd】ディレクトリを移動する](#cd)
+8. #### [【ls】ファイルを一覧表示する](#ls)
 
 
+<a id="tar"></a>
+
+# 【tar】tar.gz の圧縮と解凍
+
+### tar.gz の圧縮
+tar -zcvf folder1.tar.gz folder1  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ tar -zcvf folder1.tar.gz folder1
+folder1/
+folder1/file1.txt
+folder1/file2.txt
+folder1/file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder1.tar.gz  folder2  folder3  folder4  tmp
+```
+
+### tar.gz の解凍
+tar -zxvf folder1.tar.gz  
+folder1.tar.gz ファイルで圧縮される前のファイル・フォルダの状態のまま、解凍される
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ tar -zxvf folder1.tar.gz 
+folder1/
+folder1/file1.txt
+folder1/file2.txt
+folder1/file3.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ 
+```
+
+
+### 参考サイト
+[Linux]ファイルの圧縮、解凍方法  
+https://qiita.com/supersaiakujin/items/c6b54e9add21d375161f  
 
 
 <a id="xargs"></a>
