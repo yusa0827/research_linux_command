@@ -9,7 +9,15 @@ OS : Windows11, WSL2
 コマンドは100個  
 
 
-# 【mv】ファイルやディレクトリを移動またはリネームする
+# 目次
+1. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
+1. #### [【find】ディレクトリやファイルを見つける](#find)
+1. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
+1. #### [【factor】素因数分解する](#factor)
+1. #### [【cd】ディレクトリを移動する](#cd)
+1. #### [【ls】ファイルを一覧表示する](#ls)
+
+# <a href="#mv">【mv】ファイルやディレクトリを移動またはリネームする</a>
 
 
 「mv」は、下記の①と②ができる。  
@@ -146,7 +154,7 @@ https://atmarkit.itmedia.co.jp/ait/articles/1606/13/news024.html
 https://www.sejuku.net/blog/49611
 
 
-# 【find】ディレクトリやファイルを見つける
+#  <a href="#find">【find】ディレクトリやファイルを見つける</a>
 
 
 find コマンドは、検索するためのコマンドです。　　
@@ -220,7 +228,7 @@ https://tech-blog.rakus.co.jp/entry/20220831/find
 https://eng-entrance.com/linux-command-find  
 
 
-# シンボリックリンクとハードリンクの作成方法
+#  <a href="#symblic_hard"> シンボリックリンクとハードリンクの作成方法</a>
 
 ### シンボリックリンクとは  
 Windows だとショートカットのことです。  
@@ -259,7 +267,7 @@ inode に対して必ず1つ以上の ハードリンク が存在します。
 一つのファイルに対し，複数の実名を付ける処理がハードリンクである。ハードリンクの場合，複数あるファイル名はどれも対等なものとなる。  
 
 
-### シンボリックリンクの作成
+### <a href="#ln">【ln】シンボリックリンクの作成</a>
 ln -s <file> <symbolic_link>
 
 ```
@@ -282,7 +290,7 @@ https://webbibouroku.com/Blog/Article/linux-ln
 https://qiita.com/katsuo5/items/fc57eaa9330d318ee342
 
 
-# 素因数分解する
+# <a href="#factor">【factor】素因数分解する </a>
 factor <number>  
 
 ```
@@ -296,7 +304,7 @@ taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command$
 ```
 
 
-# ディレクトリを移動する
+# <a href="#cd">【cd】ディレクトリを移動する</a>
 cd コマンド  
 
 cdコマンドの「cd」は、「change directory」の略です。  
@@ -364,7 +372,7 @@ https://uxmilk.jp/27431
 Linuxコマンド【 cd 】作業ディレクトリを移動する  
 https://webkaru.net/linux/cd-command/  
 
-# ファイルを一覧表示する
+# <a href="#ls">【ls】ファイルを一覧表示する </a>
 ls コマンド
 
 lsコマンドは「list segments」　　
