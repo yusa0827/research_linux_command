@@ -10,14 +10,148 @@ OS : Windows11, WSL2
 
 
 # 目次
-1. #### [【tar】tar.gz の圧縮と解凍](#tar)
-2. #### [【xargs】コマンドラインを作成して実行する](#xargs)
-3. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
-4. #### [【find】ディレクトリやファイルを見つける](#find)
-5. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
-6. #### [【factor】素因数分解する](#factor)
-7. #### [【cd】ディレクトリを移動する](#cd)
-8. #### [【ls】ファイルを一覧表示する](#ls)
+1. #### [【sed】テキストの文字列を別の文字列に置換する](#sed)
+2. #### [【tar】tar.gz の圧縮と解凍](#tar)
+3. #### [【xargs】コマンドラインを作成して実行する](#xargs)
+4. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
+5. #### [【find】ディレクトリやファイルを見つける](#find)
+6. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
+7. #### [【factor】素因数分解する](#factor)
+8. #### [【cd】ディレクトリを移動する](#cd)
+9. #### [【ls】ファイルを一覧表示する](#ls)
+
+
+
+<a id="sed"></a>
+
+# 【sed】テキストの文字列を別の文字列に置換する
+sed とは(stream editor)の略  
+sed は、主にテキストにある文字列を別の文字列に置換する  
+
+
+### 文字列を置換して出力する
+
+sコマンドは正規表現で置換処理をする。
+
+echo "ABC" | sed  "s/ABC/abc/g"  
+
+3.3 The s Command  
+Its basic concept is simple: the s command attempts to match the pattern space against the supplied regular expression regexp; if the match is successful, then that portion of the pattern space which was matched is replaced with replacement  
+公式から引用　　
+
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ echo "ABC"  
+ABC
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ echo "ABC" | sed  "s/ABC/abc/"
+abc
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+オプション g はすべてのマッチした文字列を置換する。  
+オプション g がないと、1行に2つ以上マッチした場合は1つ目しか置換されない。  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ echo "ABC_ABC"
+ABC_ABC
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ echo "ABC_ABC" | sed  "s/ABC/abc/"
+abc_ABC
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ echo "ABC_ABC" | sed  "s/ABC/abc/g"
+abc_abc
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+### 参考サイト
+sed, a stream editor  
+https://www.gnu.org/software/sed/manual/sed.html#sed-script-overview  
+
+### 複数の文字列を置換して出力する
+echo "ABC_DEF" | sed -e "s/ABC/abc/" -e "s/DEF/def/g"  
+オプション -e を使うと複数で条件指定が可能  
+
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ echo "ABC_DEF" | sed -e "s/ABC/abc/" -e "s/DEF/def/g"
+abc_def
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+### テキストの文字列を置換してテキストに出力する
+
+1. パイプラインの方法  
+cat file1.txt | sed -e "s/ABC/abc/g" > file1_output.txt  
+
+オプション -e コマンドを複数実行することができる  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls
+file1.txt  file2.txt  file3.txt  folder1  folder1.tar.gz  folder2  folder3  folder4  tmp
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ echo "ABC_ABC" > file1.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt
+ABC_ABC
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt | sed -e "s/ABC/abc/g" > file1_output.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1_output.txt
+abc_abc
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ 
+```
+
+2. sed コマンドの方法 別のテキストに出力する  
+sed -e "s/ABC/abc/g" file1.txt > file1_output2.txt  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ sed -e "s/ABC/abc/g" file1.txt > file1_output2.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt
+ABC_ABC
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ sed -e "s/ABC/abc/g" file1.txt > file1_output2.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1_output2.txt
+abc_abc
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ 
+```
+
+3. sed コマンドの方法 上書きする
+sed -i "s/ABC/abc/g" file1.txt  
+-i, --in-place  
+標準出力せずにファイルを上書き  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt 
+ABC_ABC
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ sed -i "s/ABC/abc/g" file1.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ cat file1.txt 
+abc_abc
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+### 参考サイト
+sedコマンド基本  
+https://qiita.com/shunbaba/items/faf0cf2dbfd4e205e945  
+sed コマンド
+https://hydrocul.github.io/wiki/commands/sed.html
+
+
+### タブ文字を全置換する
+sed '/\t/ /g'  
+
+
+### 空行を削除する
+^$ という正規表現と 削除コマンドd を組み合わせる  
+
+cat file | sed '/^$/d'  
+
+
+### 参考サイト
+sed, a stream editor  
+https://www.gnu.org/software/sed/manual/sed.html#sed-script-overview  
+sed コマンド  
+https://hydrocul.github.io/wiki/commands/sed.html  
+
+
+### 参考サイト
+sedコマンド基本  
+https://qiita.com/shunbaba/items/faf0cf2dbfd4e205e945
+
+
 
 
 <a id="tar"></a>
