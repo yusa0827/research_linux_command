@@ -17,7 +17,8 @@ OS : Windows11, WSL2
 1. #### [【cd】ディレクトリを移動する](#cd)
 1. #### [【ls】ファイルを一覧表示する](#ls)
 
-# <a href="#mv">【mv】ファイルやディレクトリを移動またはリネームする</a>
+<a id="#mv"></a>
+#【mv】ファイルやディレクトリを移動またはリネームする
 
 
 「mv」は、下記の①と②ができる。  
@@ -153,8 +154,8 @@ https://atmarkit.itmedia.co.jp/ait/articles/1606/13/news024.html
 【Linuxコマンド】mvでファイル・ディレクトリを移動する方法
 https://www.sejuku.net/blog/49611
 
-
-#  <a href="#find">【find】ディレクトリやファイルを見つける</a>
+<a id="#find"></a>
+# 【find】ディレクトリやファイルを見つける
 
 
 find コマンドは、検索するためのコマンドです。　　
@@ -227,8 +228,8 @@ https://tech-blog.rakus.co.jp/entry/20220831/find
 ファイルなどを検索する！findコマンドの詳細まとめ【Linuxコマンド集】  
 https://eng-entrance.com/linux-command-find  
 
-
-#  <a href="#symblic_hard"> シンボリックリンクとハードリンクの作成方法</a>
+<a id="#ln"> </a>
+#  【ln】シンボリックリンクとハードリンクの作成方法
 
 ### シンボリックリンクとは  
 Windows だとショートカットのことです。  
@@ -267,7 +268,7 @@ inode に対して必ず1つ以上の ハードリンク が存在します。
 一つのファイルに対し，複数の実名を付ける処理がハードリンクである。ハードリンクの場合，複数あるファイル名はどれも対等なものとなる。  
 
 
-### <a href="#ln">【ln】シンボリックリンクの作成</a>
+###【ln】シンボリックリンクの作成
 ln -s <file> <symbolic_link>
 
 ```
@@ -289,8 +290,8 @@ https://webbibouroku.com/Blog/Article/linux-ln
 シンボリックリンクとハードリンクの違い  
 https://qiita.com/katsuo5/items/fc57eaa9330d318ee342
 
-
-# <a href="#factor">【factor】素因数分解する </a>
+<a id="#factor"> </a>
+#【factor】素因数分解する
 factor <number>  
 
 ```
