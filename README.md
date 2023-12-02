@@ -10,15 +10,120 @@ OS : Windows11, WSL2
 
 
 # 目次
-1. #### [【sed】テキストの文字列を別の文字列に置換する](#sed)
-2. #### [【tar】tar.gz の圧縮と解凍](#tar)
-3. #### [【xargs】コマンドラインを作成して実行する](#xargs)
-4. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
-5. #### [【find】ディレクトリやファイルを見つける](#find)
-6. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
-7. #### [【factor】素因数分解する](#factor)
-8. #### [【cd】ディレクトリを移動する](#cd)
-9. #### [【ls】ファイルを一覧表示する](#ls)
+1. #### [【date】日付や時刻を表示、設定する](#date)
+2. #### [【sed】テキストの文字列を別の文字列に置換する](#sed)
+3. #### [【tar】tar.gz の圧縮と解凍](#tar)
+4. #### [【xargs】コマンドラインを作成して実行する](#xargs)
+5. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
+6. #### [【find】ディレクトリやファイルを見つける](#find)
+7. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
+8. #### [【factor】素因数分解する](#factor)
+9. #### [【cd】ディレクトリを移動する](#cd)
+10. #### [【ls】ファイルを一覧表示する](#ls)
+
+
+
+<a id="date"></a>
+
+#　【date】日付や時刻を表示、設定する
+
+さまざまな用途で利用する
+* 現在の日時を取得  
+* ファイルのタイムスタンプの設定  
+* タイムスタンプによるシェルコマンドの操作
+
+
+### 現在の日時を表示する
+date  
+
+日本標準時（JST）  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ date
+Sat Dec  2 23:12:20 JST 2023
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+### UTCでの日付・時刻表示する
+Universal time coordinated（協定世界時）  
+
+出力結果にUTC と書かれている
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ date -u
+Sat Dec  2 14:13:57 UTC 2023
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+### root権限で現在日時を設定する
+sudo date -s "2023/12/25 00:00:00"
+-s	システム時刻の設定  
+管理者権限が必要  
+
+### ファイルの更新日時(タイムスタンプ)を表示する
+date -r file1.txt
+
+-r ファイルパス  
+ファイルの更新日時を表示  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls -l file1.txt
+-rwxrwxrwx 1 taso taso 8 Dec  2 21:19 file1.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ date -r file1.txt 
+Sat Dec  2 21:19:46 JST 2023
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+### ファイルの更新日時(タイムスタンプ)を変更する
+touch コマンドを利用する
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls -l file1.txt
+-rwxrwxrwx 1 taso taso 8 Dec  2 21:19 file1.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ touch -t 202312250101.01 file.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ touch -t 202312250101.01 file1.txt 
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ ls -l file1.txt
+-rwxrwxrwx 1 taso taso 8 Dec 25  2023 file1.txt
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+
+### フォーマットを利用した日時表示
+date +%F  
+YYYY-MM-DD形式  
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ date +%F
+2023-12-02
+```
+
+
+date +%T
+hh:mm:ss
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ date +%T
+23:20:57
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$
+```
+
+
+
+date "+%Y/%m/%d %H:%M:%S"
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ date "+%Y/%m/%d %H:%M:%S"
+2023/12/02 23:28:47
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command/test$ 
+```
+
+
+### 参考サイト
+date コマンド  
+https://hydrocul.github.io/wiki/commands/date.html  
+【必見】dateコマンドの使い方｜フォーマットやオプションの一覧付  
+https://itc.tokyo/linux/date-command/  
+【Linux】dateコマンドで日付フォーマットの変更及び日付計算の方法　　
+https://qiita.com/setonao/items/85435d5f7c480425ba95　　
 
 
 
