@@ -21,6 +21,8 @@ OS : Windows11, WSL2
 9. #### [【cd】ディレクトリを移動する](#cd)
 10. #### [【ls】ファイルを一覧表示する](#ls)
 
+# 例
+1. #### [特定のフォルダから特定のテキストファイルを探し、特定の文字列の行を抽出したい](#https://github.com/yusa0827/research_linux_command/example/find_xargs_cat_grep.md)
 
 
 <a id="date"></a>
