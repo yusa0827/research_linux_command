@@ -10,20 +10,38 @@ OS : Windows11, WSL2
 
 
 # 目次
-1. #### [【basename】ファイルパスからファイル名を取得する](#basename)
-2. #### [【date】日付や時刻を表示、設定する](#date)
-3. #### [【sed】テキストの文字列を別の文字列に置換する](#sed)
-4. #### [【tar】tar.gz の圧縮と解凍](#tar)
-5. #### [【xargs】コマンドラインを作成して実行する](#xargs)
-6. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
-7. #### [【find】ディレクトリやファイルを見つける](#find)
-8. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
-9. #### [【factor】素因数分解する](#factor)
-10. #### [【cd】ディレクトリを移動する](#cd)
-11. #### [【ls】ファイルを一覧表示する](#ls)
+1. #### [【dirname】ファイルパスからフォルダパスを取得する](#dirname)
+2. #### [【basename】ファイルパスからファイル名を取得する](#basename)
+3. #### [【date】日付や時刻を表示、設定する](#date)
+4. #### [【sed】テキストの文字列を別の文字列に置換する](#sed)
+5. #### [【tar】tar.gz の圧縮と解凍](#tar)
+6. #### [【xargs】コマンドラインを作成して実行する](#xargs)
+7. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
+8. #### [【find】ディレクトリやファイルを見つける](#find)
+9. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
+10. #### [【factor】素因数分解する](#factor)
+11. #### [【cd】ディレクトリを移動する](#cd)
+12. #### [【ls】ファイルを一覧表示する](#ls)
 
 # 例
 1. #### [特定のフォルダから特定のテキストファイルを探し、特定の文字列の行を抽出したい](https://github.com/yusa0827/research_linux_command/blob/master/example/find_xargs_cat_grep.md)
+
+
+<a id="dirname"></a>
+
+# [【dirname】ファイルパスからフォルダパスを取得する](#dirname)
+dirname コマンドを使うと、ファイルパスからフォルダパスを取得することができる。  
+
+dirname <ファイルパス>
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command$ dirname test/folder1/file1.txt
+test/folder1
+```
+
+### 参考サイト
+dirname - ファイル名のディレクトリ部分を抽出する  
+https://linuxcommand.net/dirname/  
 
 
 <a id="basename"></a>
