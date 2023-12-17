@@ -10,19 +10,59 @@ OS : Windows11, WSL2
 
 
 # 目次
-1. #### [【date】日付や時刻を表示、設定する](#date)
-2. #### [【sed】テキストの文字列を別の文字列に置換する](#sed)
-3. #### [【tar】tar.gz の圧縮と解凍](#tar)
-4. #### [【xargs】コマンドラインを作成して実行する](#xargs)
-5. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
-6. #### [【find】ディレクトリやファイルを見つける](#find)
-7. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
-8. #### [【factor】素因数分解する](#factor)
-9. #### [【cd】ディレクトリを移動する](#cd)
-10. #### [【ls】ファイルを一覧表示する](#ls)
+1. #### [【basename】ファイルパスからファイル名を取得する](#basename)
+2. #### [【date】日付や時刻を表示、設定する](#date)
+3. #### [【sed】テキストの文字列を別の文字列に置換する](#sed)
+4. #### [【tar】tar.gz の圧縮と解凍](#tar)
+5. #### [【xargs】コマンドラインを作成して実行する](#xargs)
+6. #### [【mv】ファイルやディレクトリを移動またはリネームする](#mv)
+7. #### [【find】ディレクトリやファイルを見つける](#find)
+8. #### [【ln】シンボリックリンクとハードリンクの作成方法](#ln)
+9. #### [【factor】素因数分解する](#factor)
+10. #### [【cd】ディレクトリを移動する](#cd)
+11. #### [【ls】ファイルを一覧表示する](#ls)
 
 # 例
 1. #### [特定のフォルダから特定のテキストファイルを探し、特定の文字列の行を抽出したい](https://github.com/yusa0827/research_linux_command/blob/master/example/find_xargs_cat_grep.md)
+
+
+<a id="basename"></a>
+
+# 【basename】ファイルパスからファイル名を取得する
+basename コマンドを使うと、ファイルパスからファイル名、フォルダパスから末尾のフォルダ名を取得できる。
+
+
+### 【basename】ファイルパスからファイル名を取得する
+basename <ファイルパス>
+
+```
+$ basename test/folder1/file1.txt  
+file1.txt
+```
+
+
+### 【basename】フォルダパスから末尾のフォルダ名を取得する
+basename <ファイルパス>
+
+```
+$ basename test/folder1
+folder1
+```
+
+### ファイルパスから拡張子を除いたファイル名を取得する
+basename -s <拡張子> <ファイルパス>
+
+```
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command$ basename -s .txt test/folder1/file1.txt 
+file1
+taso@LAPTOP-4VD8MIEJ:/mnt/c/Users/sasak/Desktop/research_linux_command$ basename -s txt test/folder1/file
+1.txt
+file1.
+```
+
+### 参考サイト
+basename - ファイル名からサフィックスとディレクトリを除く  
+https://linuxcommand.net/basename/  
 
 
 <a id="date"></a>
